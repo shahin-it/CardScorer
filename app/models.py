@@ -20,6 +20,9 @@ class Game(ModelBase):
     description = Column(String(120), index=True, nullable=True)
     teams = relationship('Team', backref="game", uselist=True)
 
+    def events(self):
+        return db.session.query(Event).filter(Event.game_id == self.id)
+
 
 class Team(ModelBase):
     title = Column(String(64), index=True, nullable=False)
