@@ -82,7 +82,7 @@ def event_list(gid=0):
 
 
 @app.route('/scheduleEventList/<int:sc_id>', methods=['GET'])
-def event_list(sc_id=0):
+def schedule_event_list(sc_id=0):
     schedule = Schedule.query.get(sc_id)
     events: typing.List[Event] = Event.query.filter_by(schedule=schedule).all()
     return render_template('event_list.html', items=events, schedule=schedule)
