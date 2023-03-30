@@ -1,4 +1,7 @@
-def make_day(num_teams, day):
+from typing import List
+
+
+def make_day(num_teams, day) -> List:
     # using circle algorithm, https://en.wikipedia.org/wiki/Round-robin_tournament#Scheduling_algorithm
     assert not num_teams % 2, "Number of teams must be even!"
     # generate list of teams
@@ -12,7 +15,7 @@ def make_day(num_teams, day):
     return list(zip(lst[:half], lst[half:][::-1]))
 
 
-def make_schedule(num_teams):
+def make_schedule(num_teams) -> List:
     """
     Produce a double round-robin schedule
     """

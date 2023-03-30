@@ -10,6 +10,7 @@ app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 from app import routes, models
+
 migrate = Migrate(app, db)
 Bootstrap5(app)
 
@@ -21,3 +22,21 @@ with app.app_context():
 @app.context_processor
 def custom_context():
     return dict(_cfg=app_config)
+
+
+@app.template_filter()
+def str_date(date, fmt=None):
+    native = date.replace(tzinfo=None)
+    return native.strftime('%b %d, %Y')
+
+
+@app.template_filter()
+def str_time(date, fmt=None):
+    native = date.replace(tzinfo=None)
+    return native.strftime('%I:%M:%S %p')
+
+
+@app.template_filter()
+def str_date_time(date, fmt=None):
+    native = date.replace(tzinfo=None)
+    return native.strftime('%b %d, %I:%M:%S %p')
