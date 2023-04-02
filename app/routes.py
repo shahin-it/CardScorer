@@ -28,7 +28,7 @@ def create_game01():
                     title="Game - " + str(datetime.today().strftime('%Y%m%d')))
         db.session.add(game)
         for idx in range(1, count + 1, 1):
-            team = Team(id=idx, title=prefix + str(idx), game=game)
+            team = Team(id=int(str(game.id) + str(idx)), title=prefix + str(idx), game=game)
             teams.append(team)
             db.session.add(team)
 
