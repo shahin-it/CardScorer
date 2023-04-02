@@ -4,7 +4,7 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0">Events of Schedule - {{ schedule.title }}</h1>
+                <h1 class="app-page-title mb-0">Rounds of Schedule - {{ schedule_id }}</h1>
             </div>
             <div class="col-auto">
                 <div class="page-utilities">
@@ -47,23 +47,23 @@
                             <th class="cell">Title</th>
                             <th class="cell">Created</th>
                             <th class="cell">Status</th>
-                            <th class="cell">Actions</th>
+{#                            <th class="cell">Actions</th>#}
                         </tr>
                         </thead>
                         <tbody>
-                        {% for event in items %}
+                        {% for round in items %}
                         <tr>
-                            <td class="cell">#{{ event.id }}</td>
-                            <td class="cell"><span class="truncate">{{ event.title }}</span></td>
-                            <td class="cell">{{ event.created|str_date }}<span class="note">{{ event.created|str_time }}</span></td>
+                            <td class="cell">#{{ round.id }}</td>
+                            <td class="cell"><span class="truncate">{{ round.title }}</span></td>
+                            <td class="cell">{{ round.created|str_date }}<span class="note">{{ round.created|str_time }}</span></td>
                             <td class="cell">
-                                {% if event.status == 1 %}
+                                {% if round.status == 1 %}
                                     <span class="badge bg-success">Active</span>
                                 {% else %}
                                     <span class="badge bg-warning">Terminated</span>
                                 {% endif %}
                             </td>
-                            <td class="cell"><a class="btn-sm app-btn-secondary" href="/scheduleDetails/{{ event.id }}">View</a></td>
+{#                            <td class="cell"><a class="btn-sm app-btn-secondary" href="/scheduleDetails/{{ round.id }}">View</a></td>#}
                         </tr>
                         {% endfor %}
                         </tbody>

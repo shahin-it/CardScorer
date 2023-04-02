@@ -21,32 +21,32 @@ class ModelBase(db.Model):
     query: ClassVar[Query] = _QueryProperty()
 
 
-class Game(ModelBase):
+class Schedule(ModelBase):
     title = Column(String(64), index=True, nullable=False)
     description = Column(String(120), index=True, nullable=True)
-    teams = relationship('Team', backref="game", uselist=True)
-    events = relationship('Event', backref="game", uselist=True)
-    schedules = relationship('Schedule', backref="game", uselist=True)
+    teams = relationship('Team', backref="schedule", uselist=True)
+    rounds = relationship('Round', backref="schedule", uselist=True)
+    boards = relationship('Board', backref="schedule", uselist=True)
 
 
 class Team(ModelBase):
     title = Column(String(64), index=True, nullable=False)
     description = Column(String(120), index=True, nullable=True)
-    game_id = Column(Integer, ForeignKey(Game.id))
-
-
-class Schedule(ModelBase):
-    title = Column(String(64), index=True, nullable=False)
-    description = Column(String(120), index=True, nullable=True)
-    events = relationship('Event', backref="schedule", uselist=True)
-    game_id = Column(Integer, ForeignKey(Game.id))
-
-
-class Event(ModelBase):
-    title = Column(String(64), index=True, nullable=False)
-    description = Column(String(120), index=True, nullable=True)
-    game_id = Column(Integer, ForeignKey(Game.id))
     schedule_id = Column(Integer, ForeignKey(Schedule.id))
+
+
+class Board(ModelBase):
+    title = Column(String(64), index=True, nullable=False)
+    description = Column(String(120), index=True, nullable=True)
+    rounds = relationship('Round', backref="board", uselist=True)
+    schedule_id = Column(Integer, ForeignKey(Schedule.id))
+
+
+class Round(ModelBase):
+    title = Column(String(64), index=True, nullable=False)
+    description = Column(String(120), index=True, nullable=True)
+    schedule_id = Column(Integer, ForeignKey(Schedule.id))
+    board_id = Column(Integer, ForeignKey(Board.id))
     team1_id = Column(Integer, ForeignKey(Team.id))
     team2_id = Column(Integer, ForeignKey(Team.id))
     team1: ClassVar[Team] = relationship(Team, foreign_keys=[team1_id])

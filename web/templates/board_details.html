@@ -4,7 +4,7 @@
     <div class="container-xl">
         <div class="row g-3 mb-4 align-items-center justify-content-between">
             <div class="col-auto">
-                <h1 class="app-page-title mb-0">Games</h1>
+                <h1 class="app-page-title mb-0">List of Board - {{ item.id }}</h1>
             </div>
             <div class="col-auto">
                 <div class="page-utilities">
@@ -45,34 +45,25 @@
                         <tr>
                             <th class="cell">ID</th>
                             <th class="cell">Title</th>
-                            <th class="cell">No of Team</th>
-                            <th class="cell">No of Schedule</th>
-                            <th class="cell">No of Event</th>
                             <th class="cell">Created</th>
                             <th class="cell">Status</th>
-{#                            <th class="cell">Actions</th>#}
+                            <th class="cell">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {% for item in items %}
+                        {% for round in item.rounds %}
                         <tr>
-                            <td class="cell">#{{ item.id }}</td>
-                            <td class="cell"><span class="truncate">{{ item.title }}</span></td>
-                            <td class="cell">{{ item.teams|length }}
-                                <a class="btn-sm app-btn-secondary" href="/teamList/{{ item.id }}">View</a></td>
-                            <td class="cell">{{ item.schedules|length }}
-                                <a class="btn-sm app-btn-secondary" href="/scheduleList/{{ item.id }}">View</a></td>
-                            <td class="cell">{{ item.events|length }}
-                                <a class="btn-sm app-btn-secondary" href="/eventList/{{ item.id }}">View</a></td>
-                            <td class="cell"><span>{{ item.created|str_date }}</span><span class="note">{{ item.created|str_time }}</span></td>
+                            <td class="cell">#{{ round.id }}</td>
+                            <td class="cell"><span class="truncate">{{ round.title }}</span></td>
+                            <td class="cell"><span>{{ round.created|str_date }}</span><span class="note">{{ round.created|str_time }}</span></td>
                             <td class="cell">
-                                {% if item.status == 1 %}
+                                {% if round.status == 1 %}
                                     <span class="badge bg-success">Active</span>
                                 {% else %}
                                     <span class="badge bg-warning">Terminated</span>
                                 {% endif %}
                             </td>
-{#                            <td class="cell"><a class="btn-sm app-btn-secondary" href="/scheduleDetails/{{ item.id }}">View</a></td>#}
+                            <td class="cell"><a class="btn-sm app-btn-secondary" href="/boardDetails/{{ round.id }}">View</a></td>
                         </tr>
                         {% endfor %}
                         </tbody>
