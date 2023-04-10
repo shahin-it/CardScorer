@@ -1,7 +1,7 @@
 import typing
 from datetime import datetime
 
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, abort
 
 from app import app, db
 from app.models import Entry, Board, Team, Round, Schedule
@@ -26,9 +26,9 @@ def create_schedule01():
         teams = []
         schedule = Schedule(id=int(datetime.today().strftime('%Y%m%d')),
                             title="Schedule - " + str(datetime.today().strftime('%Y%m%d')))
-        if Schedule.query.get(schedule.id) is not None:
+        if Schedule.query.filter_by(id=schedule.id).count() > 0:
+            abort(406, schedule.title + " already exist")
 
-            pass
         db.session.add(schedule)
         for idx in range(1, count + 1, 1):
             team = Team(id=int(str(schedule.id) + str(idx)), title=prefix + str(idx), schedule=schedule)

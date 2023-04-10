@@ -45,7 +45,7 @@
                         <tr>
                             <th class="cell">ID</th>
                             <th class="cell">Title</th>
-                            <th class="cell">No of Event</th>
+                            <th class="cell">No of Round</th>
                             <th class="cell">Created</th>
                             <th class="cell">Status</th>
                             <th class="cell">Actions</th>
@@ -56,7 +56,7 @@
                         <tr>
                             <td class="cell">#{{ board.id }}</td>
                             <td class="cell"><span class="truncate">{{ board.title }}</span></td>
-                            <td class="cell">{{ board.events|length }}</td>
+                            <td class="cell">{{ board.rounds|length }}</td>
                             <td class="cell"><span>{{ board.created|str_date }}</span><span class="note">{{ board.created|str_time }}</span></td>
                             <td class="cell">
                                 {% if board.status == 1 %}

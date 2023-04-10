@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve(strict=True).parents[1]
@@ -11,4 +12,5 @@ class Config(object):
 
 app_config = {
     'app_name': 'Card Scorer',
+    'datetime': datetime.today(),
 };
