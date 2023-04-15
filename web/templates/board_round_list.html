@@ -10,7 +10,7 @@
                 <div class="page-utilities">
                     <div class="row g-2 justify-content-start justify-content-md-end align-items-center">
                         <div class="col-auto">
-                            <i class="fa-regular fa-calendar-alt"></i> {{ _cfg.datetime.today|format }}
+                            <i class="fa-regular fa-calendar-alt"></i> {{ _cfg.datetime|str_date }}
                         </div>
                     </div><!--//row-->
                 </div><!--//table-utilities-->
@@ -20,7 +20,42 @@
         <div class="app-card app-card-orders-table shadow-sm mb-5">
             <div class="app-card-body">
                 <div class="table-responsive">
-                    <table class="table app-table-hover mb-0 text-left">
+                    <table class="table table-bordered app-table-hover mb-0 text-center">
+                        <thead>
+                        <tr>
+                            <th class="cell" rowspan="2">Round</th>
+                            <th class="cell" colspan="2">Pair</th>
+                            <th class="cell" rowspan="2">Contract</th>
+                            <th class="cell" rowspan="2">By</th>
+                            <th class="cell" rowspan="2">Tricks Win</th>
+                            <th class="cell" colspan="2">Score</th>
+                            <th class="cell" colspan="2">Match Points</th>
+                        </tr>
+                        <tr>
+                            <th class="cell">NS</th>
+                            <th class="cell">EW</th>
+
+                            <th class="cell">NS</th>
+                            <th class="cell">EW</th>
+
+                            <th class="cell">NS</th>
+                            <th class="cell">EW</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for event in items %}
+                        <tr>
+                            <td class="cell">#{{ event.id }}</td>
+                            <td class="cell"><span class="truncate">{{ event.team1.title }}</span></td>
+                            <td class="cell"><span class="truncate">{{ event.team2.title }}</span></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                            <td class="cell"></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    {#<table class="table app-table-hover mb-0 text-left">
                         <thead>
                         <tr>
                             <th class="cell">ID</th>
@@ -47,7 +82,7 @@
                         </tr>
                         {% endfor %}
                         </tbody>
-                    </table>
+                    </table>#}
                 </div><!--//table-responsive-->
 
             </div><!--//app-card-body-->
